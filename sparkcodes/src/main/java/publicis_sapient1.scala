@@ -7,7 +7,22 @@ import org.apache.spark.sql.types._
 object publicis_sapient1 {
   
   def function1(spark:SparkSession) {
+    
     import spark.implicits._
+    
+    /*List((1,"Name:Prashant;salary:1000;role:DE"),(2,"Name:Shrishti;age:27;org:facebook;city:bangalore"))
+
+Process the data and get me a dataframe with following output
+
+id,key,value
+1,Name,Prashant
+1,salary,1344443
+1,role,DE
+2,Name,Shrishti
+2,age,27
+2,org,Facebook
+2,city,Banglore*/
+    
     val lst=List((1,"Name:Prashant;salary:1000;role:DE"),(2,"Name:Shrishti;age:27;org:facebook;city:bangalore"))
     val cols=List("id","value")
     val rdd=spark.sparkContext.parallelize(lst)

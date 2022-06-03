@@ -6,7 +6,7 @@ import org.apache.spark.sql.Row
 
 object impetus {
   def impetus_function(spark:SparkSession){
-    
+    // read 2 files and count the no. of  unique words
      //val df_sample1=spark.read.option("delimiter", ",").text("src/main/resources/sample1.txt")
     val df_sample1_csv=spark.read.csv("src/main/resources/sample1.txt").toDF("id","word")
     //df_sample1.show()

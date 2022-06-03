@@ -17,6 +17,17 @@ Row(Row("Jen","Mary","Brown"),List("CSharp","VB"),"NY","M"),
 Row(Row("Mike","Mary","Williams"),List("Python","VB"),"OH","M")
 )
 
+
+ /* define the schema
+create data frame
+print the schema
+dispaly the data
+display the data where state=OH
+write the same with sql expression
+display the data where state=OH and gender=M
+display the data where languages=java
+ */
+
 val rdd_array=spark.sparkContext.parallelize(arrayStructureData)
 val schema=new StructType().add("name",new StructType().
     add("fname",StringType,true).add("mname",StringType,true).add("lname",StringType,true)).add("lang",ArrayType(StringType)).add("city",StringType).add("gender",StringType)

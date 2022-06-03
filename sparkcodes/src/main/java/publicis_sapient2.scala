@@ -8,10 +8,15 @@ import org.apache.spark.sql.types._
 object publicis_sapient2 {
   def function2(spark:SparkSession){
     
-    /*user1| Mayank Codes in #Spark and #Java
+    /*
+user1| Mayank Codes in #Spark and #Java
 user2| Coding in #Spark #Python is easy
 user1| Priyank codes in #Python #Java
-user2| Coding in #Spark #Scala is super easy*/
+user2| Coding in #Spark #Scala is super easy
+
+user1|[#Spark, #Java, #Python]
+user2|[#Python, #Spark, #Scala]*/
+    
 import spark.implicits._
 val lst_user=List(("user1","Mayank Codes in #Spark and #Java"),("user2","Coding in #Spark #Python is easy"),("user1","Priyank codes in #Python #Java"),("user2","Coding in #Spark #Scala is super easy"))
 val rdd_user=spark.sparkContext.parallelize(lst_user)
