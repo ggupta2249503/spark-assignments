@@ -11,15 +11,20 @@ import impetus.impetus_function
 import publicis_sapient3.windowFunctions
 import cgi.cgiFunctions
 import random_spark_ques.spark_random
-
+import hcl.hclFunc
+import wordCount.wordCountFunc
+import questglobal.questFunc
 object Test {
   def main(args:Array[String]){
-    val spark=SparkSession.builder.appName("test").master("local").getOrCreate()
+    val spark=SparkSession.builder.appName("test").master("local[1]").getOrCreate()
     spark.sparkContext.setLogLevel("WARN")
       import spark.implicits._
       //diff kind of joins
-      /*val lst1 =List(1,1,1,1,2,2,3,5)
-      val lst2=List(1,1,2,2,3,4) 
+      //val lst1 =List(1,1,1,1,2,2,3,5)
+      //val lst2=List(1,1,2,2,3,4) 
+      val lst1 =List(1,1,1,1)
+      val lst2=List(1,1)
+     
       val df1=lst1.toDF("id")
       val df2=lst2.toDF("id")
       val df_left=df1.join(df2,df1("id")===df2("id"),"leftouter")
@@ -27,9 +32,33 @@ object Test {
       val df_full= df1.join(df2,df1("id")===df2("id"),"fullouter")
       val df_inner= df1.join(df2,df1("id")===df2("id"))
       
+      df_left.show(false)
+      df_right.show(false)
+      df_full.show(false)
+      df_inner.show(false)
+      
+      val lst3=List(1,1,0,null,null)
+     val lst3_row= lst3.map(x=>Row(x))
+      val lst4=List(1,0,null)
+      val lst4_row= lst4.map(x=>Row(x))
+      val schema=StructType(Array(StructField("id",IntegerType,true)))
+      val rdd3=spark.sparkContext.parallelize(lst3_row)
+      val rdd4=spark.sparkContext.parallelize(lst4_row)
+       val df3=spark.createDataFrame(rdd3,schema)
+      val df4=spark.createDataFrame(rdd4,schema)
+       val df_left1=df3.join(df4,df3("id")===df4("id"),"leftouter")
+      val df_right1= df3.join(df4,df3("id")===df4("id"),"rightouter")
+      val df_full1= df3.join(df4,df3("id")===df4("id"),"fullouter")
+      val df_inner1= df3.join(df4,df3("id")===df4("id"))
+      df_left1.show(false)
+      df_right1.show(false)
+      df_full1.show(false)
+      df_inner1.show(false)
+      
+      
       
       //diff ways to create spark dataframe
-      val lst=List((1,"Name:Prashant;salary:1000;role:DE"),(2,"Name:Shrishti;age:27;org:facebook;city:bangalore"))
+      /*val lst=List((1,"Name:Prashant;salary:1000;role:DE"),(2,"Name:Shrishti;age:27;org:facebook;city:bangalore"))
     val lst_row= List(Row(1,"Name:Prashant;salary:1000;role:DE"),Row(2,"Name:Shrishti;age:27;org:facebook;city:bangalore"))
     val cols=List("id","value")
     val rdd=spark.sparkContext.parallelize(lst)
@@ -52,7 +81,10 @@ object Test {
         //impetus_function(spark)
       //windowFunctions(spark)
     //cgiFunctions(spark)
-      spark_random(spark)
+      //spark_random(spark)
+      //hclFunc(spark)
+      //wordCountFunc(spark)
+      questFunc(spark)
  
    
    

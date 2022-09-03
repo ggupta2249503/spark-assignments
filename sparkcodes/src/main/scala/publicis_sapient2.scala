@@ -47,6 +47,10 @@ val df_user=rdd_user.toDF("name","lang")
    df_user2_fil.createOrReplaceTempView("table1")
    val df_user2_fil_part=spark.sqlContext.sql("select name,col,dense_rank() over(partition by name order by col) as rn from table1")
    df_user2_fil.show(false)
+   df_user2_fil_part.show(false)
+  val df_user2_fil_grp1=df_user2_fil.dropDuplicates("name", "col")
+  df_user2_fil_grp1.show(false)
+
    //val lst_coll=df_user2_fil.collect()
    //val lstBuffUser=scala.collection.mutable.Set[String]()
    

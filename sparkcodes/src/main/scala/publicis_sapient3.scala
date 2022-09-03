@@ -41,12 +41,12 @@ object publicis_sapient3 {
 | kale | 23 | vegetable | 44 |
 +-------------------------------------------------------+ */
 
-    /*val fruits_df_mod2=spark.sqlContext.sql("select item,purchases,category,sum(purchases) over(partition by category order by purchases rows between unbounded preceding and current row) as total_purchases from fruits order by category")
+    val fruits_df_mod2=spark.sqlContext.sql("select item,purchases,category,sum(purchases) over(partition by category order by purchases rows between unbounded preceding and current row) as total_purchases from fruits order by category")
     fruits_df_mod2.show(false)
     val fruits_df_mod3=spark.sqlContext.sql("select item,purchases,category,sum(purchases) over(partition by category  rows between unbounded preceding and current row) as total_purchases from fruits ")
     fruits_df_mod3.show(false)
     val fruits_df_mod4=spark.sqlContext.sql("select item,purchases,category,sum(purchases) over(partition by category  rows between unbounded preceding and current row) as total_purchases from fruits order by category")
-    fruits_df_mod4.show(false)*/
+    fruits_df_mod4.show(false)
     val fruits_df_mod5=spark.sqlContext.sql("select item,purchases,category,sum(purchases) over(partition by category  rows between unbounded preceding and 0 following) as total_purchases from fruits order by category")
     fruits_df_mod5.show(false)
     
